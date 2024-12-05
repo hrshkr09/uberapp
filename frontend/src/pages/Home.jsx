@@ -3,12 +3,19 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
 import LocationSearchPanel from "../components/LocationSearchPanel";
+import VehiclePanel from "../components/VehiclePanel";
+import ConfirmedRide from "../components/ConfirmedRide";
 const Home = () => {
   const [pickup, setPickup] = useState("");
   const [destination, setDestination] = useState("");
   const [panelOpen, setpanelOpen] = useState(false);
   const panelRef = useRef(null);
   const panelCloseRef = useRef(null)
+  const confirmedRidePanelRef = useRef(null)
+  const [vehiclePanelOpen, setVehiclePanelOpen]= useState(false)
+  const [confirmedRidePanel,setConfirmedRidePanel ]=useState(false)
+  const vehiclePanelRef = useRef(null)
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -38,6 +45,33 @@ const Home = () => {
     }
 }, [ panelOpen ])
 
+  useGSAP(function(){
+    
+    if(vehiclePanelOpen){
+      gsap.to(vehiclePanelRef.current,{
+        transform:'translateY(0)'
+      })
+    }else{
+      gsap.to(vehiclePanelRef.current,{
+        transform:'translateY(100%)'
+      })
+    }
+  },[vehiclePanelOpen])
+
+  useGSAP(function(){
+    
+    if(confirmedRidePanel){
+      gsap.to(confirmedRidePanelRef.current,{
+        transform:'translateY(0)'
+      })
+    }else{
+      gsap.to(confirmedRidePanelRef.current,{
+        transform:'translateY(100%)'
+      })
+    }
+  },[confirmedRidePanel])
+
+
   return (
     <div className="h-screen relative overflow-hidden">
       <img
@@ -45,7 +79,7 @@ const Home = () => {
         src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
         alt="uber"
       />
-      <div className="h-screen w-screen">
+      <div  className="h-screen w-screen">
         <img
           className="h-full w-full object-cover"
           src="https://cdn.theatlantic.com/thumbor/BlEOtTo9L9mjMLuyCcjG3xYr4qE=/0x48:1231x740/960x540/media/img/mt/2017/04/IMG_7105/original.png"
@@ -88,11 +122,16 @@ const Home = () => {
           </form>
         </div>
         <div ref={panelRef} className=" bg-white  h-0">
-           <LocationSearchPanel/>
+           <LocationSearchPanel  setpanelOpen={setpanelOpen}  setVehiclePanelOpen={setVehiclePanelOpen}/>
         </div>
       </div>
 
-      <div className="fixed z-10"></div>
+      <div ref={vehiclePanelRef} className="fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-14" >
+       <VehiclePanel setConfirmedRidePanel={setConfirmedRidePanel} setVehiclePanelOpen={setVehiclePanelOpen}/>
+      </div>
+      <div ref={confirmedRidePanelRef} className="fixed w-full z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-14" >
+       <ConfirmedRide/>
+      </div>
     </div>
   );
 };
