@@ -151,16 +151,16 @@ const CaptainSignup = () => {
             />
             <select
               required
-              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border text-lg placeholder:text-base'
+              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 cursor-pointer border text-lg placeholder:text-base'
               value={vehicleType}
               onChange={(e) => {
                 setVehicleType(e.target.value)
               }}
             >
-              <option value="" disabled>Select Vehicle Type</option>
-              <option value="car">Car</option>
-              <option value="auto">Auto</option>
-              <option value="moto">Moto</option>
+              <option  value="" disabled>Select Vehicle Type</option>
+              <option  value="car">Car</option>
+              <option  value="auto">Auto</option>
+              <option  value="moto">Moto</option>
             </select>
           </div>
 
