@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { CaptainDataContext } from '../context/CaptainContext'
+import { CaptainDataContext } from '../context/CapatainContext'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -151,16 +151,16 @@ const CaptainSignup = () => {
             />
             <select
               required
-              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 cursor-pointer border text-lg placeholder:text-base'
+              className='bg-[#eeeeee] w-1/2 rounded-lg px-4 py-2 border text-lg placeholder:text-base'
               value={vehicleType}
               onChange={(e) => {
                 setVehicleType(e.target.value)
               }}
             >
-              <option  value="" disabled>Select Vehicle Type</option>
-              <option  value="car">Car</option>
-              <option  value="auto">Auto</option>
-              <option  value="moto">Moto</option>
+              <option value="" disabled>Select Vehicle Type</option>
+              <option value="car">Car</option>
+              <option value="auto">Auto</option>
+              <option value="moto">Moto</option>
             </select>
           </div>
 
