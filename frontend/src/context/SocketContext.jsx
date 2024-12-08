@@ -18,11 +18,13 @@ const SocketProvider= ({children})=>{
             console.log('Disconnected from server');
         })
     },[])
+
+    return (
+        <SocketContext.Provider value={{socket}}>{children}</SocketContext.Provider>
+    )
 }
 
 
-return (
-    <SocketContext.Provider value={{socket}}>{children}</SocketContext.Provider>
-)
+
 
 export default SocketProvider
